@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<header>
+  <div class="logo">PORT<span>FOLIO</span></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Work</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section id="home" class="hero">
+  <div class="glass">
+    <h1>Hi, I'm <span>Balamithra</span></h1>
+    <p>Full Stack Developer • UI Designer • Problem Solver</p>
+    <button onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+      Explore Work
+    </button>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="section">
+  <h2>About Me</h2>
+
+  <div class="about-grid">
+
+    <div class="card glass about-box">
+      <h3>👩‍💻 Who I Am</h3>
+      <p>
+        I am a Computer Science Engineering student passionate about building modern web applications 
+        with clean design and strong functionality.
+      </p>
+    </div>
+
+    <div class="card glass about-box">
+      <h3>⚙️ Skills</h3>
+      <p>
+        HTML, CSS, JavaScript, Node.js, MySQL, UI/UX Design, Responsive Web Development.
+      </p>
+    </div>
+
+    <div class="card glass about-box">
+      <h3>🚀 What I Do</h3>
+      <p>
+        I create full-stack applications, dashboards, and user-friendly interfaces 
+        that solve real-world problems.
+      </p>
+    </div>
+
+    <div class="card glass about-box">
+      <h3>🎯 Goal</h3>
+      <p>
+        To become a skilled full-stack developer and work on impactful projects 
+        while continuously improving my technical abilities.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects" class="section dark">
+  <h2>Projects</h2>
+
+  <div class="grid">
+
+    <div class="card hover">
+      <h3>Portfolio Website</h3>
+      <p>Responsive portfolio with dynamic backend integration and contact form.</p>
+    </div>
+
+    <div class="card hover">
+      <h3>Smart Business Dashboard</h3>
+      <p>Dashboard for tracking sales, inventory, and analytics with real-time data.</p>
+    </div>
+
+    <div class="card hover">
+      <h3>Student Management System</h3>
+      <p>Full-stack system to manage student data with CRUD operations.</p>
+    </div>
+
+    <div class="card hover">
+      <h3>UX/UI Design System</h3>
+      <p>Figma-based design system with reusable components and modern UI patterns.</p>
+    </div>
+
+    <div class="card hover">
+      <h3>Task Manager App</h3>
+      <p>Simple productivity app for managing tasks with clean UI.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+
+  <form action="https://formspree.io/f/mzdoyolv" method="POST" class="glass">
+
+  <input 
+    name="name" 
+    type="text" 
+    placeholder="Your Name" 
+    required
+  >
+
+  <input 
+    name="email" 
+    type="email" 
+    placeholder="Your Email" 
+    required
+  >
+
+  <textarea 
+    name="message" 
+    placeholder="Your Message" 
+    required
+  ></textarea>
+
+  <button type="submit">
+    Send Message
+  </button>
+
+</form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>© 2026 PORTFOLIO | Built with ⚡</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
