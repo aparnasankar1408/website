@@ -32,7 +32,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Simple Fade Animation on Scroll
+// Reveal Animation
 const revealElements = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -47,14 +47,48 @@ function revealOnScroll() {
 }
 
 window.addEventListener("scroll", revealOnScroll);
-
 revealOnScroll();
 
-// Contact Form Success Message
+
+// ===============================
+// FIXED CONTACT FORM (IMPORTANT)
+// ===============================
+
 const form = document.querySelector("form");
 
 if (form) {
-  form.addEventListener("submit", () => {
-    alert("Message sent successfully!");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault(); // 🔥 stops page reload
+
+    const submitBtn = form.querySelector("button");
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Sending...";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert("✅ Message sent successfully!");
+        form.reset();
+      } else {
+        alert("❌ Failed to send message.");
+      }
+
+    } catch (error) {
+      console.error("Error:", error);
+      alert("⚠️ Something went wrong!");
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.innerText = "Send Message";
   });
 }
