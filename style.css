@@ -176,3 +176,23 @@ footer {
 .about-box:hover {
   transform: translateY(-8px);
 }
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #6c63ff;
+  color: white;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.4s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
