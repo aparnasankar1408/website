@@ -1,182 +1,102 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+// ===============================
+// Portfolio Website Script
+// ===============================
+
+console.log("Portfolio Loaded");
+
+// Smooth Scroll Navigation
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const target = document.querySelector(this.getAttribute("href"));
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+  });
+});
+
+// Navbar Shadow on Scroll
+window.addEventListener("scroll", () => {
+  const navbar = document.querySelector("nav");
+
+  if (!navbar) return;
+
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
+  }
+});
+
+// Reveal Animation
+const revealElements = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+  revealElements.forEach(el => {
+    const windowHeight = window.innerHeight;
+    const revealTop = el.getBoundingClientRect().top;
+
+    if (revealTop < windowHeight - 100) {
+      el.classList.add("active");
+    }
+  });
 }
 
-/* BACKGROUND */
-body {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: white;
-}
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
 
-/* NAVBAR */
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 60px;
-  position: sticky;
-  top: 0;
-  background: rgba(0,0,0,0.3);
-  backdrop-filter: blur(10px);
-}
 
-.logo {
-  font-size: 22px;
-  font-weight: bold;
-}
+// ===============================
+// CONTACT FORM (FORMspree version)
+// ===============================
 
-.logo span {
-  color: #38bdf8;
-}
+const form = document.getElementById("contact-form");
+const status = document.getElementById("form-status");
 
-nav a {
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
-  transition: 0.3s;
-}
+if (form) {
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-nav a:hover {
-  color: #38bdf8;
-}
+    const data = new FormData(form);
 
-/* HERO */
-.hero {
-  height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+    status.innerHTML = "⏳ Sending...";
 
-.hero h1 {
-  font-size: 50px;
-}
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          Accept: "application/json"
+        }
+      });
 
-.hero span {
-  color: #38bdf8;
-}
+      if (response.ok) {
+        status.innerHTML = "✅ Message sent successfully!";
+        form.reset();
+      } else {
+        status.innerHTML = "❌ Failed to send message.";
+      }
 
-.hero p {
-  margin-top: 10px;
-  opacity: 0.8;
-}
+    } catch (error) {
+      status.innerHTML = "⚠️ Something went wrong!";
+    }
+  });
+  function showToast(message, success = true) {
+  const toast = document.getElementById("toast");
 
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  border: none;
-  background: #38bdf8;
-  color: black;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
+  toast.innerText = message;
 
-button:hover {
-  transform: scale(1.05);
-}
+  // change color based on success/fail
+  toast.style.background = success ? "#28a745" : "#dc3545";
 
-/* GLASS EFFECT */
-.glass {
-  background: rgba(255,255,255,0.08);
-  padding: 30px;
-  border-radius: 15px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
+  toast.classList.add("show");
 
-/* SECTIONS */
-.section {
-  padding: 80px 20px;
-  text-align: center;
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3000);
 }
-
-.dark {
-  background: rgba(255,255,255,0.03);
-}
-
-/* GRID */
-.grid {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 220px;
-  padding: 20px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.08);
-  transition: 0.3s;
-}
-
-/* HOVER ANIMATION */
-.hover:hover {
-  transform: translateY(-10px);
-  background: #38bdf8;
-  color: black;
-}
-
-/* FORM */
-form {
-  width: 320px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-}
-
-input, textarea {
-  margin: 10px 0;
-  padding: 10px;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: rgba(0,0,0,0.3);
-}
-/* ABOUT GRID */
-.about-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
-}
-
-/* ABOUT BOX */
-.about-box {
-  width: 260px;
-  text-align: left;
-  transition: 0.3s;
-}
-
-.about-box h3 {
-  color: #38bdf8;
-  margin-bottom: 10px;
-}
-
-.about-box p {
-  font-size: 14px;
-  opacity: 0.85;
-  line-height: 1.5;
-}
-
-/* HOVER EFFECT */
-.about-box:hover {
-  transform: translateY(-8px);
-}
-#form-status {
-  margin-top: 10px;
-  font-weight: 500;
 }
