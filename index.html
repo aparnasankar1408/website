@@ -110,31 +110,21 @@
 <section id="contact" class="section">
   <h2>Contact</h2>
 
-  <form action="https://formspree.io/f/mzdoyolv" method="POST" class="glass">
+  <form id="contact-form"
+      action="https://formspree.io/f/mzdoyolv"
+      method="POST"
+      class="glass"
+      onsubmit="event.preventDefault();">
 
-  <input 
-    name="name" 
-    type="text" 
-    placeholder="Your Name" 
-    required
-  >
+  <input name="name" type="text" placeholder="Your Name" required>
 
-  <input 
-    name="email" 
-    type="email" 
-    placeholder="Your Email" 
-    required
-  >
+  <input name="email" type="email" placeholder="Your Email" required>
 
-  <textarea 
-    name="message" 
-    placeholder="Your Message" 
-    required
-  ></textarea>
+  <textarea name="message" placeholder="Your Message" required></textarea>
 
-  <button type="submit">
-    Send Message
-  </button>
+  <button type="submit">Send Message</button>
+
+  <p id="form-status"></p>
 
 </form>
 </section>
